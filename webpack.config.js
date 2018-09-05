@@ -20,6 +20,7 @@ module.exports = {
 	devServer: {
 		contentBase: path.join(__dirname, "public"),
 		watchContentBase: true,
-		publicPath: "/dist/"
+		publicPath: "/dist/",
+		historyApiFallback: true
 	}
 };
