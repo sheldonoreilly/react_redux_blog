@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchPosts } from "../actions";
 import _ from "lodash";
-
+import { fetchPosts } from "../actions";
+import { Link } from "react-router-dom";
 class PostsIndex extends Component {
 	//we dont have an explicit user action to run the action creator instead the action is to
 	//be dispensed at time component loads or mounts (lifecycle hook)
@@ -25,6 +25,11 @@ class PostsIndex extends Component {
 	render() {
 		return (
 			<div>
+				<div className="text-xs-right">
+					<Link className="btn btn-primary" to="/posts/new">
+						Add a post
+					</Link>
+				</div>
 				<h3>Posts</h3>
 				<ul className="list-group">{this.renderPosts()}</ul>
 			</div>
