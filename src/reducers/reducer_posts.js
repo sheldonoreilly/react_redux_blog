@@ -8,7 +8,7 @@ export default function PostsReducer(state = {}, action) {
 			// return our part of the state.
 			//lodash provides a convinence method to take an array and transform into a object
 			//[ post1, post2] -> {id: post1, id2: post2}
-			return _.mapKeys("posts", "id");
+			return _.mapKeys(action.payload.data, "id");
 		}
 		// this reducer is not handling the incoming action
 		// so we simply return the state
