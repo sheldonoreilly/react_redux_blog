@@ -10,9 +10,6 @@ export default function PostsReducer(state = {}, action) {
 			//[ post1, post2] -> {id: post1, id2: post2}
 			return _.mapKeys(action.payload.data, "id");
 		}
-		case CREATE_POST: {
-			//add the request payload (new post) to the state
-		}
 		// this reducer is not handling the incoming action
 		// so we simply return the state
 		default:
