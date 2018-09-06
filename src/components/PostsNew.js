@@ -4,11 +4,18 @@ import { Field, reduxForm } from "redux-form";
 
 class PostsNew extends Component {
 	renderField(field) {
+		//es6 destructure
+		//reads: meta = field.meta, touched = field.meta.touched, error = field.meta.error
+		const {
+			meta: { touched, error }
+		} = field;
+
+		const className = `form-group  ${touched && error ? "has-danger" : ""}`;
 		return (
-			<div className="form-group">
+			<div className={className}>
 				<label>{field.label}</label>
 				<input className="form-control" type="text" {...field.input} />
-				{field.meta.error}
+				<div className="text-help">{touched ? error : ""}</div>
 			</div>
 		);
 	}
@@ -20,7 +27,6 @@ class PostsNew extends Component {
 	/* 
 	The <form onSubmit={handleSubmit(this.onSubmit.bind(this))}></form> call...
 	on Submit -> redux-form.handleSubmit (calling our validate method) passes -> calls our onSubmit method 
-
 	*/
 	render() {
 		const { handleSubmit } = this.props;
