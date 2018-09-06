@@ -1,5 +1,5 @@
 //a reducer returns the state after applying the action
-import { FETCH_POSTS } from "../actions";
+import { FETCH_POSTS, CREATE_POST } from "../actions";
 import _ from "lodash";
 
 export default function PostsReducer(state = {}, action) {
@@ -9,6 +9,9 @@ export default function PostsReducer(state = {}, action) {
 			//lodash provides a convinence method to take an array and transform into a object
 			//[ post1, post2] -> {id: post1, id2: post2}
 			return _.mapKeys(action.payload.data, "id");
+		}
+		case CREATE_POST: {
+			//add the request payload (new post) to the state
 		}
 		// this reducer is not handling the incoming action
 		// so we simply return the state

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import { Field, reduxForm } from "redux-form";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createPost } from "../actions";
 
 class PostsNew extends Component {
 	renderField(field) {
@@ -22,7 +24,12 @@ class PostsNew extends Component {
 	}
 
 	onSubmit(values) {
-		console.log("values :", values);
+		//the props.createPost was wired through the {createPost} of the connect method
+		this.props.createPost(values, () => {
+			/* because the Route component is rendering this component we have access 
+			to a number of props incl. history */
+			this.props.history.push("/");
+		});
 	}
 
 	/* 
@@ -76,4 +83,14 @@ function validate(values) {
 export default reduxForm({
 	validate,
 	form: "PostsNewForm"
-})(PostsNew);
+})(
+	connect(
+		null,
+		{ createPost }
+	)(PostsNew)
+);
+
+/* adding the connect function to the reduxForm function.
+	remember that the connect method returns a component,
+	this returned component (container) becomes input for the 
+	reduxFom function. */
