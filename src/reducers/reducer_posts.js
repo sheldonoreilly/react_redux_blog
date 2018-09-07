@@ -1,9 +1,14 @@
 //a reducer returns the state after applying the action
-import { FETCH_POSTS, FETCH_POST } from "../actions";
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from "../actions";
 import _ from "lodash";
 
 export default function PostsReducer(state = {}, action) {
 	switch (action.type) {
+		case DELETE_POST: {
+			//remove the post from our state
+			//omit will look for key and delete key:value if found. returning a new object
+			return _.omit(state, action.payload);
+		}
 		case FETCH_POSTS: {
 			// return our part of the state.
 			//lodash provides a convinence method to take an array and transform into a object
