@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { fetchPost } from "../actions";
 
 class PostsDetail extends Component {
@@ -16,12 +17,6 @@ class PostsDetail extends Component {
 	}
 
 	render() {
-		//sor i dont understand why this.props.post is undefined the first render
-		//state is defaulted to = {} in the reducer.  need to look more into this
-		// if (this.props.post === undefined) {
-		// 	return <div />;
-		// }
-
 		//destructure
 		const { post } = this.props;
 
@@ -32,6 +27,9 @@ class PostsDetail extends Component {
 
 		return (
 			<div>
+				<Link className="btn btn-primary" to="/">
+					Back to Index
+				</Link>
 				<h3>{post.title}</h3>
 				<h6>Categories: {post.categories}</h6>
 				<p>{post.content}</p>
