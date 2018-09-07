@@ -1,5 +1,5 @@
 //a reducer returns the state after applying the action
-import { FETCH_POSTS, CREATE_POST } from "../actions";
+import { FETCH_POSTS, FETCH_POST } from "../actions";
 import _ from "lodash";
 
 export default function PostsReducer(state = {}, action) {
@@ -10,7 +10,16 @@ export default function PostsReducer(state = {}, action) {
 			//[ post1, post2] -> {id: post1, id2: post2}
 			return _.mapKeys(action.payload.data, "id");
 		}
-		// this reducer is not handling the incoming action
+		case FETCH_POST: {
+			const post = action.payload.data;
+
+			//spread the existing state to a temp var
+			const newState = { ...state };
+			newState[post.id] = post;
+			return newState;
+			//return {...state, state[id] : action.payload.data }
+		}
+		// the reducer type is not handling the incoming action
 		// so we simply return the state
 		default:
 			return state;
